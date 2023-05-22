@@ -10,34 +10,36 @@ namespace ExamApp
     {
         public Output RollUpMethod(List<Input> inputs)
         {
-            int lowestGtinPrice = int.MaxValue;
-            int lowestVariantPrice = int.MaxValue;
+            int lowestGtinPrice = inputs[0].GTin.Price;
+            Variant lowestVariant = inputs[0].Variant;
 
             foreach (Input input in inputs)
             {
-                string gtin = input.GTin.Code;
-                string variant = input.Variant.Code;
-                int price = input.Price;
+                int gtinPrice = input.GTin.Price;
+                Variant variant = input.Variant;
 
-                if (gtin != variant && price < lowestGtinPrice)
+                if (gtinPrice < lowestGtinPrice)
                 {
-                    lowestGtinPrice = price;
+                    lowestGtinPrice = gtinPrice;
+                    lowestVariant = variant;
                 }
-
-                if (price < lowestVariantPrice)
+                else if (gtinPrice == lowestGtinPrice && variant.Price < lowestVariant.Price)
                 {
-                    lowestVariantPrice = price;
+                    lowestVariant = variant;
                 }
             }
 
             Output result = new Output
             {
-                Product = inputs[0].Product.Code,
-                Price = lowestVariantPrice
+                Product = lowestVariant.Product.Code,
+                Price = lowestVariant.Price
             };
 
             return result;
         }
+
+
+
 
 
 

@@ -9,12 +9,7 @@ namespace ExamApp
     public class Variant
     {
         public string Code { get; set; }
-        public decimal Price { get; set; }
-        public List<GTin> GTins { get; set; }
-
-        public Variant()
-        {
-            GTins = new List<GTin>();
-        }
+        public int Price { get; set; }
+     
     }
 }

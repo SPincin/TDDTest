@@ -20,6 +20,8 @@ namespace ExamApp
             Variant = variant;
             Product = product;
             Price = price;
+
+            GTin.Price = price;
         }
     }
 }
